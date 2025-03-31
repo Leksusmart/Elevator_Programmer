@@ -1,9 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "utils.h"
+#include "elevator.h"
+#include "person.h"
+
+#include <QCloseEvent>
 #include <QMainWindow>
-#include <QPixmap>
-#include <QDebug>
+#include <cstdlib>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -16,16 +20,17 @@ class MainWindow : public QMainWindow
    Q_OBJECT
 
 public:
-   MainWindow(QWidget *parent = nullptr);
+    MainWindow();
    ~MainWindow();
 
-   QPixmap personImage = QPixmap("://images/person.png").scaled(55,100,Qt::KeepAspectRatio,Qt::SmoothTransformation);
-   QPixmap elevatorImage = QPixmap("://images/Elevator.png").scaled(100,100,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+
 private:
    Ui::MainWindow *ui;
 
    private slots:
    void onCompilePressed();
    QString processCode(QString code);
+   void closeEvent(QCloseEvent *event) override;
+
 };
 #endif // MAINWINDOW_H
